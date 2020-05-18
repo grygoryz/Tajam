@@ -1,0 +1,48 @@
+
+@import "vars";
+
+//-----REM-----
+html{
+  font-size: 10px;
+  @include primaryFont;
+}
+//-----RESET-----
+
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+p {
+  margin: 0;
+}
+h2, h3{
+  margin: 0;
+}
+span{
+  display: block;
+}
+textarea{
+  padding: 0;
+}
+input, textarea{
+  border: none;
+  background: transparent;
+}
+button{
+  border: none;
+  text-decoration: none;
+  background: transparent;
+}
+
+// ---------------------------------------- BLOCKS ------------------------------------------------
+.container{
+  margin: 0 auto;
+}
+
+
+
+
+
+
