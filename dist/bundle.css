@@ -1,5 +1,7 @@
 html {
-  font-size: 10px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 
 * {
@@ -43,6 +45,52 @@ ul {
   margin: 0 auto;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  margin-right: 12px;
+}
+.logo span {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+  color: #22bac6;
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+}
+.menu__link {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  margin-right: 25px;
+}
+.menu__link:last-child {
+  margin-right: 0;
+}
+.menu__link a {
+  color: white;
+}
+.menu__link_active a {
+  color: #00e0d0;
+}
+
+.header {
+  background: #2d284c;
+}
+.header__container {
+  width: 940px;
+  padding-top: 15px;
+}
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .smth {
   height: 400px;
 }

@@ -1,18 +1,22 @@
 
 // FONTS
+// font-family: 'Roboto', sans-serif;
 
-
-@mixin primaryFont{
-
+@mixin robotoThin{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
 }
-@mixin primaryFontSemiBold{
-
+@mixin robotoLight{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
-@mixin primaryFontBold{
-
+@mixin robotoRegular{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
-@mixin titleFont{
-
+@mixin robotoBlack{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
 }
 @mixin logoFont{
 

@@ -3,8 +3,8 @@
 
 //-----REM-----
 html{
-  font-size: 10px;
-  @include primaryFont;
+  font-size: 16px;
+  @include robotoRegular;
 }
 //-----RESET-----
 
@@ -42,6 +42,41 @@ ul {
 // ---------------------------------------- BLOCKS ------------------------------------------------
 .container{
   margin: 0 auto;
+}
+// ---------------------------------- logo ---------------------------------------------------------
+.logo{
+  display: flex;
+  align-items: center;
+  & img{
+    margin-right: 12px;
+  }
+  & span{
+    @include robotoThin;
+    font-size: 30px;
+    color: #22bac6;
+    text-align: center;
+  }
+}
+
+//------------------------------------------ menu --------------------------------------------------------
+.menu{
+  display: flex;
+  &__link{
+    @include robotoBlack;
+    font-size: 13px;
+    margin-right: 25px;
+    &:last-child{
+      margin-right: 0;
+    }
+    & a{
+      color: rgb(255, 255, 255);
+    }
+    &_active{
+      & a{
+        color: rgb(0, 224, 208);
+      }
+    }
+  }
 }
 
 
