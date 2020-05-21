@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sass_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/styles.scss */ \"./src/sass/styles.scss\");\n/* harmony import */ var _sass_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_sass_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n\n\nwindow.onload = function () {}; // поставить ширину контейнера в base если все будет норм\n\n//# sourceURL=webpack:///./src/javascript/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sass_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/styles.scss */ \"./src/sass/styles.scss\");\n/* harmony import */ var _sass_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_sass_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n\n\nwindow.onload = function () {\n  burger();\n}; // поставить ширину контейнера в base если все будет норм\n\n\nfunction burger() {\n  var burger = document.querySelector(\".burger\");\n  var menu = document.querySelector(\".menu\");\n  burger.addEventListener(\"click\", function (e) {\n    menu.classList.toggle(\"menu_active\");\n    burger.classList.toggle(\"burger_active\");\n    document.body.classList.toggle(\"_hidden-overflow\");\n  });\n  burger.addEventListener(\"mousedown\", function (e) {\n    e.preventDefault();\n  });\n}\n\n//# sourceURL=webpack:///./src/javascript/index.js?");
 
 /***/ }),
 

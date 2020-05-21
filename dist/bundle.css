@@ -41,6 +41,10 @@ ul {
   margin: 0;
 }
 
+._hidden-overflow {
+  overflow: hidden;
+}
+
 .container {
   margin: 0 auto;
 }
@@ -63,11 +67,56 @@ ul {
 .menu {
   display: flex;
 }
+@media (max-width: 768px) {
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #362b59;
+    display: none;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu_active {
+    display: flex;
+  }
+}
 .menu__link {
   font-family: "Roboto", sans-serif;
   font-weight: 900;
   font-size: 13px;
   margin-right: 25px;
+  position: relative;
+}
+.menu__link:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  background-color: #00e0d0;
+  width: 0;
+  bottom: -3px;
+  left: 50%;
+  transition: 0.2s ease-in-out;
+}
+.menu__link:hover:after {
+  width: 100%;
+  left: 0;
+}
+@media (max-width: 768px) {
+  .menu__link {
+    margin: 0 0 25px;
+    font-size: 30px;
+  }
+  .menu__link:last-child {
+    margin: 0;
+  }
+  .menu__link:after {
+    transition: none;
+  }
 }
 .menu__link:last-child {
   margin-right: 0;
@@ -78,13 +127,79 @@ ul {
 .menu__link_active a {
   color: #00e0d0;
 }
+.menu__link_active:after {
+  display: none;
+}
+
+.burger {
+  position: relative;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .burger {
+    width: 40px;
+    height: 25px;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+  .burger:before, .burger:after {
+    content: "";
+    display: block;
+    width: 100%;
+    background-color: #00e0d0;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    transition: 0.5s;
+  }
+  .burger:before {
+    top: 0;
+  }
+  .burger:after {
+    top: 22px;
+  }
+  .burger span {
+    content: "";
+    display: block;
+    width: 100%;
+    background-color: #00e0d0;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.5s;
+  }
+}
+.burger_active:after, .burger_active:before {
+  background-color: white;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.burger_active:after {
+  transform: rotate(135deg);
+}
+.burger_active:before {
+  transform: rotate(-135deg);
+}
+.burger_active span {
+  opacity: 0;
+  background-color: white;
+  transform: rotate(180deg);
+}
 
 .header {
   background: #2d284c;
 }
 .header__container {
-  width: 940px;
-  padding-top: 15px;
+  max-width: 980px;
+  padding: 15px 20px 0;
+}
+@media (max-width: 1366px) {
+  .header__container {
+    max-width: 1128px;
+  }
 }
 .header__top {
   display: flex;
