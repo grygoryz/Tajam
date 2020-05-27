@@ -17,6 +17,11 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
 }
-@mixin logoFont{
-
+@mixin titleFontBlack{
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+}
+@mixin titleFontBold{
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
 }

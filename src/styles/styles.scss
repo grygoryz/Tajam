@@ -4,7 +4,10 @@
 
 //================================= HEADER START ======================================================================
 .header{
-  background-image: linear-gradient( 0deg, rgb(9,5,47) 0%, rgb(49,29,94) 100%);;
+  //background-image: linear-gradient( 0deg, rgb(9,5,47) 0%, rgb(49,29,94) 100%);
+  position: relative;
+  background: url("./../images/bg/header-bg.png") center;
+  background-size: cover;
   &__container{
     max-width: 980px;
     padding: 15px 20px 0;
@@ -26,4 +29,31 @@
   &__menu{
 
   }
+  &__content{
+    padding: 163px 0 70px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 1366px) {
+      padding-top: 163px*0.75;
+    }
+    @media (max-width: 768px) {
+      padding-top: 163px*0.45;
+    }
+  }
+  &__slider{
+    max-width: 780px;
+    width: 100%;
+    z-index: 0;
+  }
+  &__overlay{
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height:100%;
+    top: 0; left: 0;
+    background-image: linear-gradient( 0deg, rgb(9,5,47) 0%, rgb(49,29,94) 100%);
+    opacity: 0.851;
+  }
 }
+
