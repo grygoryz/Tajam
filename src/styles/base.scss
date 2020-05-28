@@ -305,3 +305,76 @@ ul {
   color: rgba(65, 61, 75, 0.749);
   line-height: 1.571;
 }
+// ----------------------------------------- video ---------------------------------------------------------
+.video{
+  width: 100%;
+  height: 550px;
+  position: relative;
+  &__preview{
+    background: url("./../images/bg/video-bg.png") center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: 1s;
+    &:hover{
+      .video__overlay{
+        opacity: 0.8;
+      }
+      .video__button-wrapper{
+        transform: scale(1.05);
+      }
+    }
+    &_fading{
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__overlay{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient( 0deg, rgb(9,5,47) 0%, rgb(49,29,94) 100%);
+    opacity: 0.851;
+    position: absolute;
+    transition: 0.4s;
+  }
+  &__button-wrapper{
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    transition: 0.3s;
+  }
+  &__play-button{
+    margin-bottom: 34px;
+  }
+  &__text{
+    @include robotoBlack;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+  }
+  &__player{
+    width: 100%;
+    height: 100%;
+  }
+}
+// --------------------------------------------play button ----------------------------------------------------------
+.play-button{
+  &__circle{
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    width: 94px;
+    height: 94px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__triangle{
+    position: relative;
+    left: 5px;
+  }
+}

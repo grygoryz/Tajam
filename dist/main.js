@@ -184,8 +184,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/burger */ "./scripts/modules/burger.js");
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_burger__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_swiper_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/swiper-slider */ "./scripts/modules/swiper-slider.js");
+/* harmony import */ var _modules_vimeo_video__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/vimeo-video */ "./scripts/modules/vimeo-video.js");
+/* harmony import */ var _modules_vimeo_video__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_vimeo_video__WEBPACK_IMPORTED_MODULE_2__);
 // ------------ BURGER ---------------------
  // ------------ SWIPER-SLIDER ---------------------
+
+ // ------------ YOUTUBE-VIDEO ---------------------
 
  // поставить ширину контейнера в base если все будет норм
 
@@ -241,6 +245,34 @@ var swiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.header-slider_
   autoplay: {
     delay: 5000
   }
+});
+
+/***/ }),
+
+/***/ "./scripts/modules/vimeo-video.js":
+/*!****************************************!*\
+  !*** ./scripts/modules/vimeo-video.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var iframeContainer = document.createElement("div");
+iframeContainer.style.cssText = "padding:42.55% 0 0 0;position:relative;";
+var vimeoIframe = document.createElement("iframe");
+vimeoIframe.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;border-width:0px;";
+vimeoIframe.src = "https://player.vimeo.com/video/310197402?autoplay=1&title=0&byline=0&portrait=0";
+vimeoIframe.allow = "autoplay;fullscreen";
+vimeoIframe.allowFullscreen = true;
+iframeContainer.append(vimeoIframe);
+var container = document.querySelector(".about__video");
+var preview = document.querySelector(".video__preview");
+preview.addEventListener("click", function () {
+  preview.classList.add("video__preview_fading");
+  container.append(iframeContainer);
+
+  preview.ontransitionend = function () {
+    preview.style.display = "none";
+  };
 });
 
 /***/ }),
