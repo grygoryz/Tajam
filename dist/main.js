@@ -229,7 +229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper */ "../node_modules/swiper/js/swiper.esm.bundle.js");
 
 
-var swiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.swiper-container', {
+var swiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.header-slider__container', {
   slidesPerView: 1,
   loop: true,
   speed: 600,

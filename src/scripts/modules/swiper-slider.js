@@ -1,7 +1,7 @@
 import "swiper/css/swiper.min.css"
 import Swiper from 'swiper';
 
-const swiper = new Swiper('.swiper-container', {
+const swiper = new Swiper('.header-slider__container', {
     slidesPerView: 1,
     loop: true,
     speed: 600,

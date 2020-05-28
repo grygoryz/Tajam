@@ -59,7 +59,6 @@ ul {
     text-align: center;
   }
 }
-
 //------------------------------------------ menu --------------------------------------------------------
 .menu{
   display: flex;
@@ -183,35 +182,22 @@ ul {
     }
   }
 }
-//------------------------------------------ slider --------------------------------------------------------
-.swiper-container{
-
-}
-
-.swiper-wrapper{
-
-}
-
-.swiper-slide{
-}
-
-.swiper-pagination{
-
-}
-
-.swiper-pagination-bullet {
-  border: 1px solid rgb(194, 194, 194);
-  border-radius: 50%;
-  width: 9px;
-  height: 9px;
-  transition: .2s;
-}
-.swiper-pagination-bullet-active {
+//------------------------------------------header slider --------------------------------------------------------
+.header-slider__container{
+  & .swiper-pagination-bullet {
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+    transition: .2s;
+  }
+  & .swiper-pagination-bullet-active {
     background-color: rgb(0, 224, 208);
     border-color: rgb(0, 224, 208);
+  }
 }
-
-.slide-content{
+// ---------------------------------------header-slide-content -------------------------------------------------------
+.header-slide-content{
   display: flex;
   align-items: center;
   flex-flow: column;
@@ -224,6 +210,7 @@ ul {
   @media (max-width: 768px) {
     margin-bottom: 127px*0.5;
   }
+
   &__title{
     @include titleFontBlack;
     font-size: 32px;
@@ -303,5 +290,18 @@ ul {
   &:active::after{
     background-color: rgb(0, 160, 148);
   }
-
+}
+// ------------------------------------ title ------------------------------------------------------------------------
+.title{
+  @include titleFontBold;
+  font-size: 22px;
+  color: rgb(65, 61, 75);
+  line-height: 1.2;
+}
+// ----------------------------------------- description-text ---------------------------------------------------------
+.description-text{
+  @include robotoLight;
+  font-size: 14px;
+  color: rgba(65, 61, 75, 0.749);
+  line-height: 1.571;
 }
