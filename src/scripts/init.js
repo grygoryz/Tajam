@@ -5,7 +5,7 @@ import "./modules/burger"
 import "./modules/swiper-slider"
 
 // ------------ YOUTUBE-VIDEO ---------------------
-import "./modules/vimeo-video"
+import "./modules/video"
 
 // поставить ширину контейнера в base если все будет норм
-
+// сделать треугольник svg адаптивным
