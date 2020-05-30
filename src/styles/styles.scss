@@ -117,7 +117,106 @@
   }
 
 }
+//================================= ABOUT END =======================================================================
+//================================= EXPERTISE START =================================================================
+.expertise{
 
+  &__container{
+    max-width: 980px;
+    padding: 70px 20px 0;
+  }
+  &__title{
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  &__subtitle{
+    @include titleFontRegular;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(47, 45, 53, 0.749);
+    line-height: 1.2;
+    padding-bottom: 18px;
+    position: relative;
+    &:after{
+      content: "";
+      display: block;
+      width: 50px;
+      height: 2px;
+      background-color: #c6c4c9;
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &__content{
+    padding-top: 40px;
+    @media (max-width: 850px) {
+      display: flex;
+      justify-content: center;
+    }
+    @media (max-width: 540px) {
+      flex-flow: column;
+    }
+  }
+  &__row{
+    display: flex;
+    justify-content: space-between;
+    &:first-child{
+      border-bottom: 1px solid #ebebeb;
+      @media (max-width: 850px) {
+        border: none;
+        margin-right: 50px;
+      }
+      @media (max-width: 540px) {
+        margin: 0;
+      }
+    }
+    @media (max-width: 850px) {
+      flex-flow: column;
+      justify-content: flex-start;
+    }
+  }
+  &__col{
+    flex: 0 1 300px;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+    @media (max-width: 540px) {
+      padding: 20px 0;
+      flex: 0 1 auto;
+    }
+  }
+  &__item{
+
+  }
+}
+
+
+.item-expertise{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  max-width: 255px;
+  &__picture{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  &__title{
+    @include robotoBlack;
+    font-size: 14px;
+    color: rgb(65, 61, 75);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    margin-top: 33px;
+  }
+  &__description{
+
+  }
+}
 
 
 
