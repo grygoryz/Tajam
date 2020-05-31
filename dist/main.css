@@ -549,23 +549,21 @@ html {
   .button::after {
     content: "";
     display: block;
-    visibility: hidden;
     position: absolute;
-    width: 110%;
-    height: 320%;
+    width: 200%;
+    height: 130%;
     background-color: #00e0d0;
-    left: -110%;
-    top: -260%;
     transition: 0.25s;
     z-index: -1;
+    transform: skew(110deg);
+    left: -250%;
     opacity: 0;
-    transform: rotate(35deg); }
+    visibility: hidden; }
   .button:hover {
     color: #09052f; }
   .button:hover::after {
     visibility: visible;
-    left: -5%;
-    top: -105%;
+    left: -50%;
     opacity: 1; }
   .button:active {
     border: 1px solid #00a094; }
