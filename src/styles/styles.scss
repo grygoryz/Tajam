@@ -322,10 +322,22 @@
   }
   &__item{
     flex: 0 1 16.6666%;
-    height: 200px;
+    height: 0;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    display: none;
+    opacity: 0;
+    transform: scale(0.1);
+    transition: .4s;
+    &_shown{
+      display: block;
+    }
+    &_transitioning{
+      height: 200px;
+      opacity: 1;
+      transform: scale(1);
+    }
     @media (max-width: 1080px) {
       flex: 0 1 33.333%;
     }
@@ -350,8 +362,17 @@
       transition: .3s;
     }
   }
-  &__button{
+  &__button-wrapper{
     margin: 70px auto;
+    display: flex;
+    justify-content: center;
+    transition: 1s;
+  }
+  &__button{
+    transition: opacity 0.4s;
+    &_fading{
+      opacity: 0;
+    }
   }
 }
 

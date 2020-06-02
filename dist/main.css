@@ -737,7 +737,14 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); }
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: .3s;
+  opacity: 0; }
+  .modal_active {
+    opacity: 1; }
+    .modal_active .modal__content {
+      width: 100%;
+      height: 100%; }
   .modal__container {
     width: 100%;
     height: 100%;
@@ -749,35 +756,49 @@ html {
     width: 85%; }
     @media (max-width: 992px) {
       .modal__slider-container {
-        width: 100%; } }
-  .modal__slide {
+        width: 95%;
+        height: 100%; } }
+  .modal__content {
+    width: 0;
+    height: 0;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain; }
+    background-size: contain;
+    transition: .4s; }
   .modal__button-prev, .modal__button-next {
     position: fixed;
-    top: 50%; }
+    top: 50%;
+    z-index: 3; }
     @media (max-width: 992px) {
       .modal__button-prev, .modal__button-next {
-        top: 92%; } }
+        display: none; } }
   .modal__button-prev {
     left: 30px; }
   .modal__button-next {
     right: 30px; }
+  .modal__pagination {
+    display: none;
+    color: rgba(255, 255, 255, 0.8);
+    bottom: 2%; }
+    @media (max-width: 992px) {
+      .modal__pagination {
+        display: block; } }
   .modal__close {
     position: fixed;
-    top: 25px;
-    right: 30px;
-    width: 32px;
-    height: 32px;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
     opacity: 0.3;
     cursor: pointer;
-    transition: opacity .2s; }
+    transition: opacity .2s;
+    z-index: 3; }
     .modal__close:hover {
       opacity: 1; }
     .modal__close:before, .modal__close:after {
       position: absolute;
-      left: 15px;
+      left: 50%;
+      top: 23%;
       content: ' ';
       height: 34px;
       width: 3px;
@@ -1034,10 +1055,20 @@ html {
 
 .gallery__item {
   flex: 0 1 16.6666%;
-  height: 200px;
+  height: 0;
   position: relative;
   overflow: hidden;
-  cursor: pointer; }
+  cursor: pointer;
+  display: none;
+  opacity: 0;
+  transform: scale(0.1);
+  transition: .4s; }
+  .gallery__item_shown {
+    display: block; }
+  .gallery__item_transitioning {
+    height: 200px;
+    opacity: 1;
+    transform: scale(1); }
   @media (max-width: 1080px) {
     .gallery__item {
       flex: 0 1 33.333%; } }
@@ -1058,8 +1089,16 @@ html {
     left: 0;
     transition: .3s; }
 
+.gallery__button-wrapper {
+  margin: 70px auto;
+  display: flex;
+  justify-content: center;
+  transition: 1s; }
+
 .gallery__button {
-  margin: 70px auto; }
+  transition: opacity 0.4s; }
+  .gallery__button_fading {
+    opacity: 0; }
 
 
 /*# sourceMappingURL=main.css.map*/

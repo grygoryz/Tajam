@@ -187,6 +187,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/video */ "./scripts/modules/video.js");
 /* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_video__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _modules_lightbox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/lightbox */ "./scripts/modules/lightbox.js");
+/* harmony import */ var _modules_lazyload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/lazyload */ "./scripts/modules/lazyload.js");
+/* harmony import */ var _modules_lazyload__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_lazyload__WEBPACK_IMPORTED_MODULE_4__);
 // ------------ BURGER ---------------------
  // ------------ SWIPER-SLIDER ---------------------
 
@@ -194,11 +196,16 @@ __webpack_require__.r(__webpack_exports__);
 
  // ------------- LIGHTBOX -------------------------
 
+ // ------------- LAZYLOAD -------------------------
+
  // - поставить ширину контейнера в base если все будет норм
 // - сделать треугольник svg адаптивным
 // - разобраться с z-index
 // - поуменьшать отступы на маленьких разрешениях
 // - наблюдать за изменением разрешения и производить swiper.update()
+// - установить PostCSS и autoprefixer
+// - подумать над таймаутом  modal.classList.add("modal_active");
+// - не забивается ли стэк при каждом вызове инит?
 
 /***/ }),
 
@@ -212,17 +219,78 @@ __webpack_require__.r(__webpack_exports__);
 function burger() {
   var burger = document.querySelector(".burger");
   var menu = document.querySelector(".menu");
-  burger.addEventListener("click", function (e) {
-    menu.classList.toggle("menu_active");
-    burger.classList.toggle("burger_active");
-    document.body.classList.toggle("_hidden-overflow");
+  burger.addEventListener("click", function () {
+    toggleMenu();
+
+    menu.onclick = function (e) {
+      if (!e.target.closest(".menu__link")) return;
+      menu.onclick = null;
+      toggleMenu();
+    };
   });
   burger.addEventListener("mousedown", function (e) {
     e.preventDefault();
   });
+
+  function toggleMenu() {
+    menu.classList.toggle("menu_active");
+    burger.classList.toggle("burger_active");
+    document.body.classList.toggle("_hidden-overflow");
+  }
 }
 
 document.addEventListener("DOMContentLoaded", burger);
+
+/***/ }),
+
+/***/ "./scripts/modules/lazyload.js":
+/*!*************************************!*\
+  !*** ./scripts/modules/lazyload.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var galleryWrapper = document.querySelector(".gallery__wrapper");
+var button = document.querySelector(".gallery__button");
+var items = galleryWrapper.querySelectorAll("[data-src]");
+var lastIndex;
+var STEP = 4;
+loadPart(12);
+
+button.onclick = function (e) {
+  e.preventDefault();
+  loadPart(STEP);
+  if (lastIndex + 1 === items.length) hideButton();
+};
+
+function loadPart(n) {
+  var startIndex = lastIndex + 1 || 0;
+
+  for (var i = startIndex; i < startIndex + n; i++) {
+    var item = items[i];
+    if (!item) return;
+    showItem(item, item.dataset.src);
+    lastIndex = i;
+  }
+}
+
+function showItem(container, src) {
+  container.insertAdjacentHTML("afterbegin", "<img data-pic src=\"".concat(src, "\" alt=\"\">"));
+  container.classList.add("gallery__item_shown");
+  setTimeout(function () {
+    container.classList.add("gallery__item_transitioning");
+  });
+}
+
+function hideButton() {
+  button.classList.add("gallery__button_fading");
+
+  button.ontransitionend = function (e) {
+    if (e.propertyName !== "opacity") return;
+    button.style.visibility = "hidden";
+    button.ontransitionend = button.onclick = null;
+  };
+}
 
 /***/ }),
 
@@ -255,18 +323,18 @@ var Lightbox = /*#__PURE__*/function () {
     this.selector = options.selector;
 
     this._init();
+
+    this._observe();
   }
 
   _createClass(Lightbox, [{
     key: "_init",
     value: function _init() {
       var items = this.container.querySelectorAll(this.selector);
-      items.forEach(function (node, index) {
-        return node.setAttribute("data-index", index);
-      });
-      var sources = Array.from(items).map(function (item) {
-        return item.getAttribute("src");
-      });
+
+      this._numberItems(items);
+
+      var sources = this._getSources(items);
 
       var modal = this._createModal(sources);
 
@@ -281,29 +349,52 @@ var Lightbox = /*#__PURE__*/function () {
 
         function openModal(index) {
           document.body.append(modal);
+          document.body.classList.add("_hidden-overflow");
           slider.update();
           slider.slideTo(index, 0);
+          modal.classList.add("modal_active");
           modal.querySelector(".modal__close").onclick = closeModal;
+        }
 
-          function closeModal() {
+        function closeModal() {
+          modal.classList.remove("modal_active");
+          document.body.classList.remove("_hidden-overflow");
+
+          modal.ontransitionend = function () {
             modal.remove();
-            this.onclick = null;
-          }
+            modal.ontransitionend = null;
+          };
+
+          this.onclick = null;
         }
       }
+    }
+  }, {
+    key: "_numberItems",
+    value: function _numberItems(items) {
+      items.forEach(function (node, index) {
+        return node.setAttribute("data-index", index);
+      });
+    }
+  }, {
+    key: "_getSources",
+    value: function _getSources(items) {
+      return Array.from(items).map(function (item) {
+        return item.getAttribute("src");
+      });
     }
   }, {
     key: "_createModal",
     value: function _createModal(sources) {
       var modal = document.createElement("div");
       modal.classList.add("modal");
-      modal.innerHTML = " <div class=\"modal__container\">\n        <div class=\"modal__close\"><span></span></div>\n        <div class=\"modal__slider-container swiper-container\">\n            <div class=\"modal__slider-wrapper swiper-wrapper\">".concat(getSlides(), "</div>\n            <div class=\"modal__button-prev swiper-button-prev swiper-button-white\"></div>\n            <div class=\"modal__button-next swiper-button-next swiper-button-white\"></div>\n        </div>\n    </div>");
+      modal.innerHTML = " <div class=\"modal__container\">\n        <div class=\"modal__close\"><span></span></div>\n        <div class=\"modal__slider-container swiper-container\">\n            <div class=\"modal__slider-wrapper swiper-wrapper\">".concat(getSlides(), "</div>\n            <div class=\"modal__button-prev swiper-button-prev swiper-button-white\"></div>\n            <div class=\"modal__button-next swiper-button-next swiper-button-white\"></div>\n            <div class=\"modal__pagination swiper-pagination\"></div>\n        </div>\n    </div>");
 
       function getSlides() {
         var items = "";
 
         for (var i = 0; i < sources.length; i++) {
-          var markup = "<div style=\"background-image: url(".concat(sources[i], ")\" class=\"swiper-slide modal__slide\"></div>");
+          var markup = "<div class=\"swiper-slide modal__slide\">\n                                  <div class=\"swiper-zoom-container\">\n                                      <div style=\"background-image: url(".concat(sources[i], ")\" class=\"modal__content swiper-zoom-target\"></div>\n                                  </div>\n                              </div>");
           items += markup;
         }
 
@@ -318,6 +409,7 @@ var Lightbox = /*#__PURE__*/function () {
       var container = modal.querySelector(".modal__slider-container");
       var prevButton = modal.querySelector(".modal__button-prev");
       var nextButton = modal.querySelector(".modal__button-next");
+      var pagination = modal.querySelector(".modal__pagination");
       return new swiper__WEBPACK_IMPORTED_MODULE_1__["default"](container, {
         slidesPerView: 1,
         speed: 600,
@@ -328,29 +420,44 @@ var Lightbox = /*#__PURE__*/function () {
         keyboard: {
           enabled: true
         },
-        spaceBetween: 30
+        spaceBetween: 30,
+        zoom: true,
+        pagination: {
+          el: pagination,
+          type: 'fraction'
+        }
+      });
+    }
+  }, {
+    key: "_observe",
+    value: function _observe() {
+      var _this = this;
+
+      var observer = new MutationObserver(function (mutationRecords) {
+        mutationRecords.forEach(function (mutation) {
+          if (mutation.addedNodes.length || mutation.removedNodes.length) _this._init();
+        });
+      });
+      observer.observe(this.container, {
+        childList: true,
+        subtree: true
       });
     }
   }]);
 
   return Lightbox;
-}();
+}(); // window.onload = () => {
+//
+// }
 
-var galleryWrapper = document.querySelector(".gallery__wrapper");
-var gallery = new Lightbox({
-  container: galleryWrapper,
-  selector: "[data-pic]"
-}); // const swiper = new Swiper('.modal__slider-container', {
-//     slidesPerView: 1,
-//     speed: 600,
-//     navigation: {
-//         nextEl: '.modal__button-next',
-//         prevEl: '.modal__button-prev',
-//     },
-//     keyboard: {
-//         enabled: true,
-//     },
-// });
+
+document.addEventListener("DOMContentLoaded", function () {
+  var galleryWrapper = document.querySelector(".gallery__wrapper");
+  var gallery = new Lightbox({
+    container: galleryWrapper,
+    selector: "[data-pic]"
+  });
+});
 
 /***/ }),
 

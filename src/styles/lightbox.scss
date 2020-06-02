@@ -6,6 +6,17 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
+
+  transition: .3s;
+  opacity: 0;
+  &_active{
+    opacity: 1;
+
+    .modal__content{
+      width: 100%;
+      height: 100%;
+    }
+  }
   &__container{
     width: 100%;
     height: 100%;
@@ -17,19 +28,26 @@
     height: 80%;
     width: 85%;
     @media (max-width: 992px) {
-      width: 100%;
+      width: 95%;
+      height: 100%;
     }
   }
   &__slide{
+  }
+  &__content{
+    width: 0;
+    height: 0;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    transition: .4s;
   }
   &__button-prev, &__button-next{
     position: fixed;
     top: 50%;
+    z-index: 3;
     @media (max-width: 992px) {
-      top: 92%;
+      display: none;
     }
   }
   &__button-prev{
@@ -38,21 +56,31 @@
   &__button-next{
     right: 30px;
   }
+  &__pagination{
+    display: none;
+    color: rgba(255, 255, 255, 0.8);
+    bottom: 2%;
+    @media (max-width: 992px) {
+      display: block;
+    }
+  }
   &__close{
     position: fixed;
-    top: 25px;
-    right: 30px;
-    width: 32px;
-    height: 32px;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
     opacity: 0.3;
     cursor: pointer;
     transition: opacity .2s;
+    z-index: 3;
     &:hover {
       opacity: 1;
     }
     &:before, &:after {
       position: absolute;
-      left: 15px;
+      left: 50%;
+      top: 23%;
       content: ' ';
       height: 34px;
       width: 3px;
@@ -64,7 +92,6 @@
     &:after {
       transform: rotate(-45deg);
     }
-
   }
 }
 

@@ -6,15 +6,16 @@ class Lightbox{
         this.container = options.container;
         this.selector = options.selector;
 
-        this._init()
+        this._init();
+        this._observe();
     }
 
     _init(){
         const items = this.container.querySelectorAll(this.selector);
-        items.forEach((node, index) => node.setAttribute(`data-index`, index));
 
-        const sources = Array.from(items).map(item => item.getAttribute("src"));
+        this._numberItems(items);
 
+        const sources = this._getSources(items);
         const modal = this._createModal(sources);
         const slider = this._getSlider(modal);
 
@@ -28,17 +29,32 @@ class Lightbox{
 
             function openModal(index) {
                 document.body.append(modal);
+                document.body.classList.add("_hidden-overflow");
                 slider.update();
                 slider.slideTo(index, 0);
+                modal.classList.add("modal_active");
 
                 modal.querySelector(".modal__close").onclick = closeModal;
+            }
 
-                function closeModal() {
+            function closeModal() {
+                modal.classList.remove("modal_active");
+                document.body.classList.remove("_hidden-overflow");
+                modal.ontransitionend = () => {
                     modal.remove();
-                    this.onclick = null;
-                }
+                    modal.ontransitionend = null;
+                };
+                this.onclick = null;
             }
         }
+    }
+
+    _numberItems(items){
+        items.forEach((node, index) => node.setAttribute(`data-index`, index));
+    }
+
+    _getSources(items){
+        return Array.from(items).map(item => item.getAttribute("src"));
     }
 
     _createModal(sources){
@@ -50,13 +66,18 @@ class Lightbox{
             <div class="modal__slider-wrapper swiper-wrapper">${getSlides()}</div>
             <div class="modal__button-prev swiper-button-prev swiper-button-white"></div>
             <div class="modal__button-next swiper-button-next swiper-button-white"></div>
+            <div class="modal__pagination swiper-pagination"></div>
         </div>
     </div>`;
 
         function getSlides() {
             let items = "";
             for (let i = 0; i < sources.length; i++){
-                let markup = `<div style="background-image: url(${sources[i]})" class="swiper-slide modal__slide"></div>`;
+                let markup = `<div class="swiper-slide modal__slide">
+                                  <div class="swiper-zoom-container">
+                                      <div style="background-image: url(${sources[i]})" class="modal__content swiper-zoom-target"></div>
+                                  </div>
+                              </div>`;
                 items += markup;
             }
             return items;
@@ -69,6 +90,7 @@ class Lightbox{
         const container = modal.querySelector(".modal__slider-container");
         const prevButton = modal.querySelector(".modal__button-prev");
         const nextButton = modal.querySelector(".modal__button-next");
+        const pagination = modal.querySelector(".modal__pagination");
 
         return new Swiper(container, {
             slidesPerView: 1,
@@ -80,30 +102,46 @@ class Lightbox{
             keyboard: {
                 enabled: true,
             },
-            spaceBetween: 30
+            spaceBetween: 30,
+            zoom: true,
+            pagination: {
+                el: pagination,
+                type: 'fraction',
+            },
         });
     }
+
+    _observe(){
+        let observer = new MutationObserver((mutationRecords) => {
+            mutationRecords.forEach((mutation) => {
+                if (mutation.addedNodes.length || mutation.removedNodes.length) this._init();
+            })
+        });
+
+        observer.observe(this.container, {
+            childList: true,
+            subtree: true
+        })
+    }
+
 }
 
 
-const galleryWrapper = document.querySelector(".gallery__wrapper");
+// window.onload = () => {
+//
+// }
 
-let gallery = new Lightbox({
-    container: galleryWrapper,
-    selector: "[data-pic]"
-});
 
-// const swiper = new Swiper('.modal__slider-container', {
-//     slidesPerView: 1,
-//     speed: 600,
-//     navigation: {
-//         nextEl: '.modal__button-next',
-//         prevEl: '.modal__button-prev',
-//     },
-//     keyboard: {
-//         enabled: true,
-//     },
-// });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const galleryWrapper = document.querySelector(".gallery__wrapper");
+
+    let gallery = new Lightbox({
+        container: galleryWrapper,
+        selector: "[data-pic]"
+    });
+})
 
 
 
