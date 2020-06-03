@@ -198,14 +198,19 @@ __webpack_require__.r(__webpack_exports__);
 
  // ------------- LAZYLOAD -------------------------
 
- // - поставить ширину контейнера в base если все будет норм
+ // - ***поставить ширину контейнера в base если все будет норм
 // - сделать треугольник svg адаптивным
 // - разобраться с z-index
-// - поуменьшать отступы на маленьких разрешениях
+// - ***поуменьшать отступы на маленьких разрешениях
 // - наблюдать за изменением разрешения и производить swiper.update()
 // - установить PostCSS и autoprefixer
-// - подумать над таймаутом  modal.classList.add("modal_active");
+// - ***подумать над таймаутом  modal.classList.add("modal_active");
 // - не забивается ли стэк при каждом вызове инит?
+// - ***изменить название titleFont
+// - убрать лишний класс slide-content у слайдеров и передать стили просто slide
+// - настроить quotes слайдеры так, чтобы по верхнему можно было свайпать
+// - сделать адаптив до 1920
+// - ***в конце разбить стили по отдельным файлам
 
 /***/ }),
 
@@ -475,7 +480,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper */ "../node_modules/swiper/js/swiper.esm.bundle.js");
 
 
-var swiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.header-slider__container', {
+var headerSwiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.header-slider__container', {
   slidesPerView: 1,
   loop: true,
   speed: 600,
@@ -488,6 +493,44 @@ var swiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.header-slider_
     delay: 5000
   }
 });
+var quotesSwiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.quotes-slider__container', {
+  slidesPerView: 1,
+  loop: true,
+  speed: 600,
+  spaceBetween: 30,
+  allowTouchMove: false,
+  effect: "fade",
+  fadeEffect: {
+    crossFade: true
+  }
+});
+var paginationSwiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.pagination-slider__container', {
+  slidesPerView: 3,
+  loop: true,
+  speed: 600,
+  centeredSlides: true,
+  navigation: {
+    nextEl: '.pagination-slider__button-next',
+    prevEl: '.pagination-slider__button-prev'
+  },
+  spaceBetween: 13,
+  slideToClickedSlide: true,
+  on: {
+    slideChangeTransitionStart: function slideChangeTransitionStart() {
+      quotesSwiper.slideToLoop(this.realIndex);
+    }
+  },
+  breakpoints: {
+    500: {
+      slidesPerView: 5
+    }
+  }
+}); // quotesSwiper.on("slideChangeTransitionStart", function () {
+//     paginationSwiper.slideToLoop(this.realIndex);
+// });
+// quotesSwiper.controller.control = paginationSwiper;
+// paginationSwiper.controller.control = quotesSwiper;
+//allowTouchMove: false,
 
 /***/ }),
 
