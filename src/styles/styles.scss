@@ -368,14 +368,15 @@
     transition: 1s;
   }
   &__button{
-    transition: opacity 0.4s;
+    transition: opacity, height 0.4s;
     &_fading{
       opacity: 0;
+      height: 0;
     }
   }
 }
 //================================= WORKS END ==========================================================================
-//================================= PEOPLE-SAY START ===================================================================
+//================================= QUOTES START =======================================================================
 .quotes{
   background: url("./../images/bg/quotes-bg.png");
   background-size: cover;
@@ -527,5 +528,120 @@
     transform: scale(1.75);
   }
 }
+//================================= QUOTES END ==========================================================================
+//================================= CONTACT START =======================================================================
+.contact{
+
+  &__container{
+    max-width: 980px;
+    padding: 70px 20px;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 715px) {
+      flex-flow: column;
+      align-items: center;
+    }
+  }
+  &__form-wrapper{
+    flex: 0 1 460px;
+    margin-right: 30px;
+    @media (max-width: 715px) {
+      width: 100%;
+      text-align: center;
+      margin-right: 0;
+      margin-bottom: 50px;
+    }
+  }
+  &__title{
+    margin-bottom: 33px;
+  }
+  &__form{
+
+  }
+  &__clients{
+
+  }
+}
 
 
+.form-contact{
+  display: flex;
+  flex-flow: column;
+  @media (max-width: 715px) {
+    align-items: center;
+  }
+  input:not([type="submit"]), textarea{
+    max-width: 460px;
+    border: 1px solid #e5e5e5;
+    padding-left: 20px;
+    padding-right: 20px;
+    @include robotoRegular;
+    font-size: 16px;
+    &::placeholder{
+      @include robotoLight;
+      font-size: 14px;
+      color: rgba(65, 61, 75, 0.502);
+    }
+    &:focus{
+      border-color: #bebebe;
+    }
+    @media (max-width: 715px) {
+      width: 100%;
+    }
+  }
+  input:not([type="submit"]){
+    height: 45px;
+    margin-bottom: 23px;
+  }
+  textarea {
+    padding-top: 21px;
+    height: 200px;
+    resize: none;
+    margin-bottom: 21px;
+  }
+  &__name{
+  }
+  &__email{
+  }
+  &__subject{
+  }
+  &__message{
+  }
+  &__button{
+  }
+}
+
+.clients-contact{
+
+  &__title{
+    margin-bottom: 37px;
+    @media (max-width: 715px) {
+     text-align: center;
+      margin-bottom: 43px;
+    }
+  }
+  &__list{
+    display: flex;
+    @media (max-width: 400px) {
+      flex-flow: column;
+    }
+  }
+  &__col{
+    margin-right: 80px;
+    &:last-child{
+      margin: 0;
+    }
+    @media (max-width: 830px) {
+    margin-right: 20px;
+  }
+    @media (max-width: 400px) {
+      margin: 0;
+    }
+  }
+  &__item{
+    margin-bottom: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

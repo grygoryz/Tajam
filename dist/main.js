@@ -189,6 +189,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_lightbox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/lightbox */ "./scripts/modules/lightbox.js");
 /* harmony import */ var _modules_lazyload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/lazyload */ "./scripts/modules/lazyload.js");
 /* harmony import */ var _modules_lazyload__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_lazyload__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/form */ "./scripts/modules/form.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_form__WEBPACK_IMPORTED_MODULE_5__);
 // ------------ BURGER ---------------------
  // ------------ SWIPER-SLIDER ---------------------
 
@@ -197,6 +199,8 @@ __webpack_require__.r(__webpack_exports__);
  // ------------- LIGHTBOX -------------------------
 
  // ------------- LAZYLOAD -------------------------
+
+ // ------------- FORM -------------------------
 
  // - ***поставить ширину контейнера в base если все будет норм
 // - сделать треугольник svg адаптивным
@@ -211,6 +215,7 @@ __webpack_require__.r(__webpack_exports__);
 // - настроить quotes слайдеры так, чтобы по верхнему можно было свайпать
 // - сделать адаптив до 1920
 // - ***в конце разбить стили по отдельным файлам
+// - *** распределить images по папкам. исправить ошибки в названиях
 
 /***/ }),
 
@@ -245,6 +250,33 @@ function burger() {
 }
 
 document.addEventListener("DOMContentLoaded", burger);
+
+/***/ }),
+
+/***/ "./scripts/modules/form.js":
+/*!*********************************!*\
+  !*** ./scripts/modules/form.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var submitButton = document.querySelector(".form-contact__button");
+var form = document.contactForm;
+form.addEventListener("focusin", function (e) {
+  var field = e.target.closest("[placeholder]");
+  if (!field) return;
+  var placeholder = field.placeholder;
+  field.removeAttribute("placeholder");
+
+  field.onblur = function () {
+    field.placeholder = placeholder;
+    field.onblur = null;
+  };
+});
+submitButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  form.submit();
+});
 
 /***/ }),
 
@@ -289,12 +321,13 @@ function showItem(container, src) {
 
 function hideButton() {
   button.classList.add("gallery__button_fading");
-
-  button.ontransitionend = function (e) {
-    if (e.propertyName !== "opacity") return;
+  setTimeout(function () {
     button.style.visibility = "hidden";
     button.ontransitionend = button.onclick = null;
-  };
+  }); // button.ontransitionend = (e) => {
+  //     if (e.propertyName !== "opacity") return;
+  //
+  // }
 }
 
 /***/ }),
@@ -524,6 +557,9 @@ var paginationSwiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"]('.pagi
     500: {
       slidesPerView: 5
     }
+  },
+  autoplay: {
+    delay: 5000
   }
 }); // quotesSwiper.on("slideChangeTransitionStart", function () {
 //     paginationSwiper.slideToLoop(this.realIndex);

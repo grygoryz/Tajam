@@ -24,6 +24,7 @@ textarea{
 input, textarea{
   border: none;
   background: transparent;
+  outline: none;
 }
 button{
   border: none;
@@ -317,7 +318,6 @@ html{
   font-size: 22px;
   color: rgb(65, 61, 75);
   line-height: 1.2;
-
 }
 // ----------------------------------------- description-text ---------------------------------------------------------
 .description-text{

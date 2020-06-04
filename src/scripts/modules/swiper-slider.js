@@ -50,6 +50,9 @@ const paginationSwiper = new Swiper('.pagination-slider__container', {
         500: {
             slidesPerView: 5
         }
+    },
+    autoplay: {
+        delay: 5000
     }
 });
 

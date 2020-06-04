@@ -1,0 +1,22 @@
+         <div class="clients-contact__list">
+                <div class="clients-contact__row">
+                    <div class="clients-contact__item"><img src="images/pic/zara-logo.png" alt=""></div>
+                    <div class="clients-contact__item"><img src="images/pic/mango-logo.png" alt=""></div>
+                </div>
+                <div class="clients-contact__row">
+                    <div class="clients-contact__item"><img src="images/pic/barneys-logo.png" alt=""></div>
+                    <div class="clients-contact__item"><img src="images/pic/gucci-logo.png" alt=""></div>
+                </div>
+                <div class="clients-contact__row">
+                    <div class="clients-contact__item"><img src="images/pic/ck-logo.png" alt=""></div>
+                    <div class="clients-contact__item"><img src="images/pic/nike-logo.png" alt=""></div>
+                </div>
+                <div class="clients-contact__row">
+                    <div class="clients-contact__item"><img src="images/pic/converse-logo.png" alt=""></div>
+                    <div class="clients-contact__item"><img src="images/pic/puma-logo.png" alt=""></div>
+                </div>
+                <div class="clients-contact__row">
+                    <div class="clients-contact__item"><img src="images/pic/leivs-logo.png" alt=""></div>
+                    <div class="clients-contact__item"><img src="images/pic/billadbong-logo.png" alt=""></div>
+                </div>
+            </div>

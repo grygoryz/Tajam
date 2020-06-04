@@ -36,10 +36,12 @@ function showItem(container, src){
 function hideButton(){
     button.classList.add("gallery__button_fading");
 
-    button.ontransitionend = (e) => {
-        if (e.propertyName !== "opacity") return;
-
+    setTimeout(() => {
         button.style.visibility = "hidden";
         button.ontransitionend = button.onclick = null;
-    }
+    });
+    // button.ontransitionend = (e) => {
+    //     if (e.propertyName !== "opacity") return;
+    //
+    // }
 }
