@@ -1,5 +1,4 @@
 .quotes{
-  background: url("./../images/bg/quotes-bg.png");
   background-size: cover;
   position: relative;
   &__container{
@@ -26,7 +25,7 @@
   position: relative;
   min-height: 250px;
   &__quotes-char {
-    @include titleFontRegular;
+    @include playfairRegular;
     font-size: 100px;
     color: rgba(255, 255, 255, 0.902);
     position: absolute;
@@ -34,7 +33,7 @@
     transform: translateX(-50%);
   }
   &__quote {
-    @include titleFontRegular;
+    @include playfairRegular;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.851);
     line-height: 1.625;

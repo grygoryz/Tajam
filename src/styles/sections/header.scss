@@ -1,12 +1,12 @@
 .header{
   position: relative;
-  background: url("./../images/bg/header-bg.png") center;
+  background-position: center;
   background-size: cover;
   &__container{
     padding-top: 15px;
     padding-bottom: 0;
     @media (max-width: 1366px) {
-      max-width: 940px*1.2;
+      max-width: 980px*1.2;
     }
   }
   &__top{
@@ -187,7 +187,7 @@
     margin-bottom: 127px*0.5;
   }
   &__title{
-    @include titleFontBlack;
+    @include playfairBlack;
     font-size: 32px;
     color: rgb(255, 255, 255);
     line-height: 1.2;

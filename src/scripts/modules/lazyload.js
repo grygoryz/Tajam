@@ -40,8 +40,6 @@ function hideButton(){
         button.style.visibility = "hidden";
         button.ontransitionend = button.onclick = null;
     });
-    // button.ontransitionend = (e) => {
-    //     if (e.propertyName !== "opacity") return;
-    //
-    // }
 }
+
+

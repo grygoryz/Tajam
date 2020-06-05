@@ -36,14 +36,9 @@
       transform: translateY(-50%) rotate(-45deg);
       transition: .3s;
     }
-    &:hover{
-      &:after{
-        animation: left-to-right .4s alternate infinite;
-      }
+    &:after{
+      animation: left-to-right .6s alternate infinite;
     }
-  }
-  &__gallery{
-
   }
 }
 

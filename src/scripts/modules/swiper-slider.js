@@ -56,11 +56,4 @@ const paginationSwiper = new Swiper('.pagination-slider__container', {
     }
 });
 
-// quotesSwiper.on("slideChangeTransitionStart", function () {
-//     paginationSwiper.slideToLoop(this.realIndex);
-// });
 
-// quotesSwiper.controller.control = paginationSwiper;
-// paginationSwiper.controller.control = quotesSwiper;
-
-//allowTouchMove: false,

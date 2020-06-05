@@ -1,6 +1,8 @@
 import "swiper/css/swiper.min.css"
 import Swiper from 'swiper';
 
+let set = new WeakSet();
+
 class Lightbox{
     constructor(options) {
         this.container = options.container;
@@ -26,6 +28,7 @@ class Lightbox{
             if (!item) return;
 
             openModal(item.dataset.index);
+            modal.querySelector(".modal__close").onclick = closeModal;
 
             function openModal(index) {
                 document.body.append(modal);
@@ -33,8 +36,6 @@ class Lightbox{
                 slider.update();
                 slider.slideTo(index, 0);
                 modal.classList.add("modal_active");
-
-                modal.querySelector(".modal__close").onclick = closeModal;
             }
 
             function closeModal() {
@@ -113,9 +114,12 @@ class Lightbox{
 
     _observe(){
         let observer = new MutationObserver((mutationRecords) => {
-            mutationRecords.forEach((mutation) => {
-                if (mutation.addedNodes.length || mutation.removedNodes.length) this._init();
-            })
+            for (let mutation of mutationRecords){
+                if (mutation.addedNodes.length || mutation.removedNodes.length){
+                    this._init();
+                    break;
+                }
+            }
         });
 
         observer.observe(this.container, {
@@ -127,13 +131,6 @@ class Lightbox{
 }
 
 
-// window.onload = () => {
-//
-// }
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const galleryWrapper = document.querySelector(".gallery__wrapper");
 
@@ -141,9 +138,4 @@ document.addEventListener("DOMContentLoaded", () => {
         container: galleryWrapper,
         selector: "[data-pic]"
     });
-})
-
-
-
-
-
+});

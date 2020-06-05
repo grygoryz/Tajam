@@ -1,12 +1,10 @@
 .footer{
-  background-image: url("./../images/bg/footer-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   position: relative;
   &__container{
     position: relative;
-    z-index: 2;
     display: flex;
     justify-content: space-between;
     @media (max-width: 780px) {
@@ -63,6 +61,7 @@
   &__logo{
     position: absolute;
     top: -18px;
+    z-index: 1;
     @media (max-width: 780px) {
       left: 50%;
       transform: translateX(-50%);
@@ -147,11 +146,7 @@
     }
   }
   &__location{
-    background-image: url("./../images/ico/map-point-ico.png");
     margin-bottom: 23px;
-  }
-  &__tel{
-    background-image: url("./../images/ico/tel-ico.png");
   }
   &__subscribe-form{
     margin-bottom: 27px;
