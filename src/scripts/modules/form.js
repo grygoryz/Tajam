@@ -1,23 +1,36 @@
-const submitButton = document.querySelector(".form-contact__button");
-const form = document.contactForm;
+const contactForm = {
+    form:  document.contactForm,
+    submitButton: document.querySelector(".form-contact__button")
+};
 
-form.addEventListener("focusin", e => {
-    let field = e.target.closest("[placeholder]");
-    if (!field) return;
+const subscribeForm = {
+    form: document.subscribeForm,
+    submitButton: document.querySelector(".subscribe-form__submit")
+};
 
-    const placeholder = field.placeholder;
-    field.removeAttribute("placeholder");
+initForms(contactForm, subscribeForm);
 
-    field.onblur = () => {
-        field.placeholder = placeholder;
-        field.onblur = null;
-    }
-});
+function initForms(...forms) {
+    forms.forEach(({form, submitButton}) => {
+        form.addEventListener("focusin", e => {
+            let field = e.target.closest("[placeholder]");
+            if (!field) return;
 
-submitButton.addEventListener("click", e => {
-    e.preventDefault();
-    form.submit();
-});
+            const placeholder = field.placeholder;
+            field.removeAttribute("placeholder");
+
+            field.onblur = () => {
+                field.placeholder = placeholder;
+                field.onblur = null;
+            }
+        });
+
+        submitButton.addEventListener("click", e => {
+            e.preventDefault();
+            form.submit();
+        });
+    })
+}
 
 
 
