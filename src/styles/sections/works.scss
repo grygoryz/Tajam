@@ -1,0 +1,120 @@
+.works{
+  &__container{
+    @media (max-width: 640px) {
+      padding: 55px 20px;
+    }
+  }
+  &__head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 640px) {
+      flex-flow: column;
+    }
+  }
+  &__title{
+    @media (max-width: 640px) {
+      margin-bottom: 30px;
+    }
+  }
+  &__link{
+    @include robotoLight;
+    font-size: 14px;
+    color: rgb(65, 61, 75);
+    line-height: 1.2;
+    position: relative;
+    padding-right: 18px;
+    &:after{
+      content: "";
+      display: block;
+      width: 9px;
+      height: 9px;
+      border-right: 1px solid rgb(65, 61, 75);
+      border-bottom: 1px solid rgb(65, 61, 75);
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+      transition: .3s;
+    }
+    &:hover{
+      &:after{
+        animation: left-to-right .4s alternate infinite;
+      }
+    }
+  }
+  &__gallery{
+
+  }
+}
+
+@keyframes left-to-right {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: -4px;
+  }
+}
+// ----------------------------------- gallery -----------------------------------------------------------------------
+.gallery{
+  &__wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+  &__item{
+    flex: 0 1 16.6666%;
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: none;
+    opacity: 0;
+    transform: scale(0.1);
+    transition: .4s;
+    &_shown{
+      display: block;
+    }
+    &_transitioning{
+      height: 200px;
+      opacity: 1;
+      transform: scale(1);
+    }
+    @media (max-width: 1080px) {
+      flex: 0 1 33.333%;
+    }
+    @media (max-width: 640px) {
+      flex: 0 1 50%;
+    }
+    @media (max-width: 450px) {
+      flex: 0 1 100%;
+    }
+    &:hover{
+      & img{
+        transform: scale(1.1);
+      }
+    }
+    & img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: .3s;
+    }
+  }
+  &__button-wrapper{
+    margin: 70px auto;
+    display: flex;
+    justify-content: center;
+    transition: 1s;
+  }
+  &__button{
+    transition: opacity, height 0.4s;
+    &_fading{
+      opacity: 0;
+      height: 0;
+    }
+  }
+}
