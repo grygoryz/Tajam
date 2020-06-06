@@ -20,25 +20,27 @@ function loadPart(n){
         let item = items[i];
         if (!item) return;
 
-        showItem(item, item.dataset.src);
+        showItem(item, item.dataset.src, item.dataset.realsrc);
         lastIndex = i;
     }
 }
 
-function showItem(container, src){
-    container.insertAdjacentHTML("afterbegin", `<img data-pic src="${src}" alt="">`);
+function showItem(container, src, realsrc){
+    container.insertAdjacentHTML("afterbegin", `<img data-pic src="${src}" data-realsrc="${realsrc}" alt="">`);
     container.classList.add("gallery__item_shown");
     setTimeout(() => {
         container.classList.add("gallery__item_transitioning")
-    })
+    }, 100)
 }
 
 function hideButton(){
     button.classList.add("gallery__button_fading");
 
+
     setTimeout(() => {
         button.style.visibility = "hidden";
-        button.ontransitionend = button.onclick = null;
+        button.onclick = null;
+        button.parentElement.classList.add("gallery__button-wrapper_narrow");
     });
 }
 

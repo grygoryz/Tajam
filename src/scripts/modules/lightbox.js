@@ -55,7 +55,7 @@ class Lightbox{
     }
 
     _getSources(items){
-        return Array.from(items).map(item => item.getAttribute("src"));
+        return Array.from(items).map(item => item.dataset.realsrc);
     }
 
     _createModal(sources){
@@ -104,7 +104,6 @@ class Lightbox{
                 enabled: true,
             },
             spaceBetween: 30,
-            zoom: true,
             pagination: {
                 el: pagination,
                 type: 'fraction',

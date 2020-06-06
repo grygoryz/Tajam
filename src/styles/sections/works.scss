@@ -1,7 +1,7 @@
 .works{
   &__container{
-    @media (max-width: 640px) {
-      padding: 55px 20px;
+    @media (max-width: 992px) {
+      padding: 40px 20px;
     }
   }
   &__head{
@@ -103,7 +103,13 @@
     margin: 70px auto;
     display: flex;
     justify-content: center;
-    transition: 1s;
+    transition: .6s;
+    @media (max-width: 992px) {
+      margin: 45px auto;
+    }
+    &_narrow{
+      margin: 35px auto;
+    }
   }
   &__button{
     transition: opacity, height 0.4s;

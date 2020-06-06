@@ -54,7 +54,7 @@ html{
 .logo{
   display: flex;
   align-items: center;
-  z-index: 3;
+  z-index: 1;
   & img{
     margin-right: 12px;
   }
@@ -95,6 +95,7 @@ html{
   &_big{
     width: 140px;
   }
+
   &::after {
     content: "";
     display: block;
@@ -111,6 +112,11 @@ html{
   }
   &:hover {
     color: rgb(9, 5, 47);
+  }
+  &_light{
+    &:hover{
+      color: rgba(17, 10, 85, 0.85);
+    }
   }
   &:hover::after {
     visibility: visible;

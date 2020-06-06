@@ -4,6 +4,10 @@
   background-size: cover;
   &__container{
     padding-bottom: 60px;
+    @media (max-width: 990px) {
+      padding-bottom: 35px;
+      padding-top: 35px;
+    }
   }
   &__section-head{
     margin-bottom: 47px;
