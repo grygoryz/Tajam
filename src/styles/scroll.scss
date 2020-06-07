@@ -1,0 +1,139 @@
+._hide{
+  visibility: hidden;
+}
+
+// -------------------------------------------- ANIMATION CLASSES ------------------------------------------------------
+// ---- fade-in ----
+._fadeIn{
+  animation: fadeIn;
+}
+// ---- scale ----
+._scale-increase{
+  animation: scaleIncrease;
+}
+._scale-decrease{
+  animation: scaleDecrise;
+}
+._scale-increase-fadeIn{
+  animation: scaleIncrease, fadeIn;
+}
+._scale-decrease-fadeIn{
+  animation: scaleDecrease, fadeIn;
+}
+// ---- right-to-left ----
+._right-to-left{
+  animation: rightToLeft;
+}
+._right-to-left-fadeIn{
+  animation: rightToLeft, fadeIn;
+}
+// ---- left-to-right ----
+._left-to-right{
+  animation: leftToRight;
+}
+._left-to-right-fadeIn{
+  animation: leftToRight, fadeIn;
+}
+// ---- top-to-bottom ----
+._top-to-bottom{
+  animation: topToBottom;
+}
+._top-to-bottom-fadeIn{
+  animation: topToBottom, fadeIn;
+}
+._top-to-bottom-scale-increase{
+  animation: topToBottom, scaleIncrease;
+}
+._top-to-bottom-scale-decrease{
+  animation: topToBottom, scaleDecrease;
+}
+._top-to-bottom-scale-fadeIn{
+  animation: topToBottom, scale, fadeIn;
+}
+._top-to-bottom-scale-increase-fadeIn{
+  animation: topToBottom, scaleIncrease, fadeIn;
+}
+._top-to-bottom-scale-decrease-fadeIn{
+  animation: topToBottom, scaleDecrease, fadeIn;
+}
+// ---- bottom-to-top ----
+._bottom-to-top{
+  animation: bottomToTop;
+}
+._bottom-to-top-fadeIn{
+  animation: bottomToTop, fadeIn;
+}
+._bottom-to-top-scale-increase{
+  animation: bottomToTop, scaleIncrease;
+}
+._bottom-to-top-scale-decrease{
+  animation: bottomToTop, scaleDecrease;
+}
+._bottom-to-top-scale-fadeIn{
+  animation: bottomToTop, scale, fadeIn;
+}
+
+// ---------------------------------------------- KEY FRAMES------------------------------------------------------------
+@keyframes scaleIncrease {
+  0% {
+    transform: scale(0.8);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleDecrease {
+  0% {
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes leftToRight {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rightToLeft {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes topToBottom {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bottomToTop {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
