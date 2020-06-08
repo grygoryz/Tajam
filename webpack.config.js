@@ -33,7 +33,7 @@ const cssLoaders = extra => {
             hmr: isDev,
             reloadAll: true
         }
-    } ,"css-loader"];
+    } ,"css-loader", "postcss-loader"];
 
     if (extra){
         loaders.push(extra);
