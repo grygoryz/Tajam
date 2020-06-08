@@ -1,8 +1,6 @@
 import "swiper/css/swiper.min.css"
 import Swiper from 'swiper';
 
-let set = new WeakSet();
-
 class Lightbox{
     constructor(options) {
         this.container = options.container;
@@ -76,7 +74,9 @@ class Lightbox{
             for (let i = 0; i < sources.length; i++){
                 let markup = `<div class="swiper-slide modal__slide">
                                   <div class="swiper-zoom-container">
-                                      <div style="background-image: url(${sources[i]})" class="modal__content swiper-zoom-target"></div>
+                                      <div data-background="${sources[i]}" class="modal__content swiper-lazy swiper-zoom-target">
+                                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white""></div>
+                                      </div>
                                   </div>
                               </div>`;
                 items += markup;
@@ -92,6 +92,7 @@ class Lightbox{
         const prevButton = modal.querySelector(".modal__button-prev");
         const nextButton = modal.querySelector(".modal__button-next");
         const pagination = modal.querySelector(".modal__pagination");
+        const sliderContainer =  modal.querySelector(".modal__slider-container");
 
         return new Swiper(container, {
             slidesPerView: 1,
@@ -108,6 +109,19 @@ class Lightbox{
                 el: pagination,
                 type: 'fraction',
             },
+            preloadImages: false,
+            lazy: true,
+            zoom: true,
+            on: {
+                zoomChange: function(scale){
+                    if (scale > 1){
+                        sliderContainer.classList.add("modal__slider-container_wide")
+                    } else {
+                        sliderContainer.classList.remove("modal__slider-container_wide")
+                    }
+
+                }
+            }
         });
     }
 

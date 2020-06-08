@@ -35,7 +35,7 @@ ul {
   padding: 0;
   margin: 0;
 }
-html{
+body{
   overflow-x: hidden;
 }
 // =================================== UTIL CLASSES ====================================================================
@@ -98,7 +98,6 @@ html{
   &_big{
     width: 140px;
   }
-
   &::after {
     content: "";
     display: block;
@@ -113,6 +112,20 @@ html{
     opacity: 0;
     visibility: hidden;
   }
+  //&::before {
+  //  content: "";
+  //  display: block;
+  //  position: absolute;
+  //  width: 200%;
+  //  height: 130%;
+  //  background-color: rgb(0, 224, 208);
+  //  transition: 0.25s;
+  //  z-index: -1;
+  //  transform: skew(110deg);
+  //  left: 150%;
+  //  opacity: 0;
+  //  visibility: hidden;
+  //}
   &:hover {
     color: rgb(9, 5, 47);
   }
@@ -126,6 +139,11 @@ html{
     left: -50%;
     opacity: 1;
   }
+  //&:hover::before {
+  //  visibility: visible;
+  //  left: 50%;
+  //  opacity: 1;
+  //}
   &:active{
     border: 1px solid rgb(0, 160, 148);
   }

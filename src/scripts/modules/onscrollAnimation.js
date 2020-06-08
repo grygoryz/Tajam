@@ -3,28 +3,26 @@
 //      {
 //        el: <el>
 //        duration: <int> (default = 1)
-//        animation: <string> (scale, left-to-right, right-to-left)
+//        animation: <string> or <arr> ([str1, str2, str3 ... ])
 //        observable: <el> (default = this.el)
 //        limit: <int> (default = 0)
 //        breakpoints: { (max-width)
 //              1000: {
 //
 //              }
+//              500: {
+//
+//              }
+//              ...
 //        }
 //      }
 // ];
-
-
-
-
 
 function init(options){
     let isScrolling = false;
     let clientWidth = document.documentElement.clientWidth;
 
-
     prepare();
-
 
     window.addEventListener("scroll", OnScroll);
     window.addEventListener("resize", OnResize);
@@ -32,13 +30,11 @@ function init(options){
 
     function prepare(){
         for (let item of options){
-            // let observable = item.observable || item.el;
-            // if (observable.getBoundingClientRect().bottom <= 0) {
-            //     console.log(observable.getBoundingClientRect().bottom);
-            //     item.animated = true;
-            //     console.log(item)
-            //     continue;
-            // }
+            let observable = item.observable || item.el;
+            if (observable.getBoundingClientRect().bottom <= 0) {
+                item.animated = true;
+                continue;
+            }
 
             hide(item.el)
         }
@@ -53,18 +49,27 @@ function init(options){
 
     function handleScrolling() {
         for (let item of options){
-            // if (item.animated) continue;
+            if (item.animated) continue;
+
             let {el, animation, limit = 0, duration = 1, observable} = getCurrentProps(item);
 
             if (isPartialVisible(observable || el, limit)){
-                el.classList.add(`_${animation}`);
-                el.style.animationDuration = `${duration}s`;
+                attachAnimation(el, animation, duration);
                 show(el);
-                // item.animated = true;
+                item.animated = true;
             }
         }
 
         isScrolling = false;
+    }
+
+    function attachAnimation(el, animation, duration) {
+        if (typeof animation === "string") {
+            el.style.animation = animation;
+        } else {
+            el.style.animation = animation.join(",");
+        }
+        el.style.animationDuration = `${duration}s`;
     }
 
     function isPartialVisible(el, limit) {
@@ -77,13 +82,8 @@ function init(options){
         if (!breakpoints) return item;
 
         for (let breakpoint in breakpoints){
-
             if (clientWidth <= breakpoint){
-                let options = breakpoints[breakpoint];
-
-                for (let option in options){
-                   item[option] = options[option];
-                }
+                Object.assign(item, breakpoints[breakpoint]);
                 break;
             }
         }
@@ -114,30 +114,30 @@ let options = [
     },
     {
         el: document.querySelector(".about__picture"),
-        animation: "left-to-right",
+        animation: "leftToRight",
         limit: 50,
         observable: document.querySelector(".about__content"),
         breakpoints: {
             1024: {
-                animation: "left-to-right-fadeIn"
+                animation: ["leftToRight", "fadeIn"]
             },
             680: {
-                animation: "scale-increase",
+                animation: "scaleIncrease",
                 duration: 0.5
             }
         }
     },
     {
         el: document.querySelector(".about__article"),
-        animation: "right-to-left",
+        animation: "rightToLeft",
         limit: 50,
         observable: document.querySelector(".about__content"),
         breakpoints: {
             1024: {
-                animation: "right-to-left-fadeIn"
+                animation: ["rightToLeft","fadeIn"]
             },
             680: {
-                animation: "bottom-to-top",
+                animation: "bottomToTop",
                 duration: 0.5
             }
         }
@@ -148,42 +148,42 @@ let options = [
     },
     {
         el: document.querySelector(".expertise__section-head"),
-        animation: "scale-increase-fadeIn",
+        animation: ["scaleIncrease", "fadeIn"],
         limit: 35,
         duration: 0.5
     },
     {
         el: document.querySelector(".expertise__row"),
-        animation: "top-to-bottom-fadeIn",
+        animation: ["topToBottom", "fadeIn"],
         limit: 50,
         duration: 1,
         breakpoints: {
             850: {
-                animation: "left-to-right-fadeIn",
+                animation: ["leftToRight", "fadeIn"],
             },
             540: {
-                animation: "scale-increase-fadeIn",
+                animation: ["scaleIncrease", "fadeIn"],
             }
         }
     },
     {
         el: document.querySelector(".expertise__row").nextElementSibling,
-        animation: "top-to-bottom-fadeIn",
+        animation: ["topToBottom", "fadeIn"],
         limit: 50,
         duration: 1,
         breakpoints: {
             850: {
-                animation: "right-to-left-fadeIn",
+                animation: ["rightToLeft", "fadeIn"],
             },
             540: {
-                animation: "scale-increase-fadeIn",
+                animation: ["scaleIncrease", "fadeIn"],
                 observable: document.querySelector(".expertise__row")
             }
         }
     },
     {
         el: document.querySelector(".team__section-head"),
-        animation: "scale-increase-fadeIn",
+        animation: ["scaleIncrease","fadeIn"],
         limit: 35,
         duration: 0.5
     },
@@ -195,7 +195,7 @@ let options = [
     },
     {
         el: document.querySelector(".team__footer"),
-        animation: "bottom-to-top-fadeIn",
+        animation: ["bottomToTop","fadeIn"],
         limit: 20,
         duration: 0.7
     },
@@ -206,42 +206,42 @@ let options = [
     },
     {
         el: document.querySelector(".gallery__button-wrapper"),
-        animation: "bottom-to-top-fadeIn",
+        animation: ["bottomToTop", "fadeIn"],
         limit: 20,
         duration: 0.7
     },
     {
         el: document.querySelector(".quotes__slider"),
-        animation: "scale-increase-fadeIn",
+        animation: ["scaleIncrease", "fadeIn"],
         limit: 50,
         duration: 0.7
     },
     {
         el: document.querySelector(".contact__form-wrapper"),
-        animation: "left-to-right",
+        animation: "leftToRight",
         limit: 50,
         observable: document.querySelector(".contact"),
         breakpoints: {
             1180: {
-                animation: "left-to-right-fadeIn",
+                animation: ["leftToRight", "fadeIn"],
             },
             715: {
-                animation: "scale-increase",
+                animation: "scaleIncrease",
                 duration: 0.7
             }
         }
     },
     {
         el: document.querySelector(".contact__clients"),
-        animation: "right-to-left",
+        animation: "rightToLeft",
         limit: 50,
         observable: document.querySelector(".contact"),
         breakpoints: {
             1180: {
-                animation: "right-to-left-fadeIn",
+                animation: ["rightToLeft", "fadeIn"],
             },
             715: {
-                animation: "scale-increase",
+                animation: "scaleIncrease",
                 duration: 0.7,
                 observable: null
             }
@@ -255,9 +255,7 @@ let options = [
 
 
 init(options);
-// document.addEventListener("DOMContentLoaded", () => {
-//
-// });
+
 
 
 
