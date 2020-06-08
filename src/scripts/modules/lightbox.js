@@ -109,6 +109,7 @@ class Lightbox{
             },
             preloadImages: false,
             lazy: true,
+            loadPrevNext: true
         });
     }
 

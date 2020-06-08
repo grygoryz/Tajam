@@ -20,7 +20,7 @@ import "./modules/form"
 import "./modules/onscrollAnimation"
 
 // - сделать адаптив до 1920
-// - установить PostCSS и autoprefixer
+// - садаптивить картинки для мобилы
 
 // МБ:
 // - разобраться с z-index
