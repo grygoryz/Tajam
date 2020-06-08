@@ -72,11 +72,10 @@ class Lightbox{
         function getSlides() {
             let items = "";
             for (let i = 0; i < sources.length; i++){
-                let markup = `<div class="swiper-slide modal__slide">                 
-                                      <div class="modal__content">
-                                            <img data-src="${sources[i]}" class="swiper-lazy modal__image">
+                let markup = `<div class="swiper-slide modal__slide">
+                                      <div data-background="${sources[i]}" class="modal__content swiper-lazy swiper-zoom-target">
                                             <div class="swiper-lazy-preloader swiper-lazy-preloader-white""></div>
-                                      </div>  
+                                      </div>
                               </div>`;
                 items += markup;
             }
@@ -91,6 +90,7 @@ class Lightbox{
         const prevButton = modal.querySelector(".modal__button-prev");
         const nextButton = modal.querySelector(".modal__button-next");
         const pagination = modal.querySelector(".modal__pagination");
+        const sliderContainer =  modal.querySelector(".modal__slider-container");
 
         return new Swiper(container, {
             slidesPerView: 1,
