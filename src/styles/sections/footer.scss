@@ -3,6 +3,13 @@
   background-size: cover;
   background-position: center;
   position: relative;
+  background-image: url("../images/bg/footer-bg.png");
+  @media (max-width: 992px) {
+    background-image: url("../images/bg/footer-bg-992.jpg");
+  }
+  @media (max-width: 630px) {
+    background-image: url("../images/bg/footer-bg-630.jpg");
+  }
   &__container{
     position: relative;
     display: flex;
@@ -75,12 +82,14 @@
     line-height: 1.857;
     margin-bottom: 80px;
     margin-top: 42px;
+    @media (min-width: 1750px) {
+      font-size: 16px;
+    }
     @media (max-width: 780px) {
       margin-top: 55px;
       margin-bottom: 20px;
       text-align: center;
     }
-
   }
   &__menu{
     display: flex;
@@ -122,6 +131,9 @@
       &:hover{
         border-color: rgb(255, 255, 255);
       }
+      @media (min-width: 1750px) {
+        font-size: 15px;
+      }
     }
   }
   &__title{
@@ -129,6 +141,9 @@
     font-size: 15px;
     color: rgb(255, 255, 255);
     margin-bottom: 23px;
+    @media (min-width: 1750px) {
+      font-size: 16px;
+    }
   }
   &__location, &__tel{
     @include robotoLight;
@@ -142,6 +157,9 @@
     background-position: left top 3px;
     margin-right: 20px;
     transition: opacity .3s;
+    @media (min-width: 1750px) {
+      font-size: 16px;
+    }
     &:hover{
       opacity: 0.8;
     }
@@ -198,10 +216,16 @@
     color: rgb(255, 255, 255);
     transition: opacity .2s;
     margin-right: 10px;
+    @media (min-width: 1750px) {
+      font-size: 16px;
+    }
     &::placeholder{
       @include robotoLight;
       font-size: 14px;
       color: rgb(255, 255, 255);
+      @media (min-width: 1750px) {
+        font-size: 16px;
+      }
     }
     &:focus{
       opacity: 1;

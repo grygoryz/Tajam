@@ -14,13 +14,12 @@ import "./modules/lightbox"
 import "./modules/lazyload"
 
 // ------------- FORM -------------------------
-import "./modules/form"
+import "./modules/forms"
 
 // ------------- ONSCROLL ANIMATION -------------------------
 import "./modules/onscrollAnimation"
 
-// - сделать адаптив до 1920
-// - садаптивить картинки для мобилы
+
 
 // МБ:
 // - разобраться с z-index

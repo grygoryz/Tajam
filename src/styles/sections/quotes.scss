@@ -1,6 +1,13 @@
 .quotes{
   background-size: cover;
   position: relative;
+  background-image: url("../images/bg/quotes-bg.png");
+  @media (max-width: 992px) {
+    background-image: url("../images/bg/quotes-bg-992.jpg");
+  }
+  @media (max-width: 500px) {
+    background-image: url("../images/bg/quotes-bg-500.jpg");
+  }
   &__container{
     padding-right: 90px;
     padding-left: 90px;
@@ -59,12 +66,18 @@
     color: rgb(255, 255, 255);
     line-height: 1.571;
     text-transform: uppercase;
+    @media (min-width: 1750px) {
+      font-size: 16px;
+    }
   }
   &__position {
     @include  robotoLight;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.702);
     line-height: 1.692;
+    @media (min-width: 1750px) {
+      font-size: 15px;
+    }
   }
 }
 // --------------------------------------- pagination-slider ----------------------------------------------------------

@@ -69,6 +69,9 @@
     line-height: 1.2;
     margin-bottom: 20px;
     margin-top: 33px;
+    @media (min-width: 1750px) {
+      font-size: 16px;
+    }
   }
   &__description{
 

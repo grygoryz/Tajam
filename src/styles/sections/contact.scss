@@ -26,7 +26,6 @@
     margin-bottom: 33px;
   }
   &__form{
-
   }
   &__clients{
 
@@ -51,6 +50,9 @@
       @include robotoLight;
       font-size: 14px;
       color: rgba(65, 61, 75, 0.502);
+      @media (min-width: 1750px) {
+        font-size: 16px;
+      }
     }
     &:focus{
       border-color: #bebebe;

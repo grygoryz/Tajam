@@ -3,6 +3,15 @@
   background-position: center;
   background-size: cover;
   background-image: url("../images/bg/header-bg.png");
+  @media (max-width: 992px) {
+    background-image: url("../images/bg/header-bg-992.png");
+  }
+  @media (max-width: 768px) {
+    background-image: url("../images/bg/header-bg-768.jpg");
+  }
+  @media (max-width: 500px) {
+    background-image: url("../images/bg/header-bg-500.jpg");
+  }
   &__container{
     padding-top: 15px;
     padding-bottom: 0;
@@ -62,6 +71,9 @@
     font-size: 13px;
     margin-right: 25px;
     position: relative;
+    @media (min-width: 1750px) {
+      font-size: 15px;
+    }
     &:after{
       content: "";
       display: block;
@@ -93,7 +105,6 @@
     @media (max-height: 351px) {
       margin-bottom: 15px;
     }
-
     &:last-child{
       margin-right: 0;
     }
@@ -224,6 +235,9 @@
     color: rgb(255, 255, 255);
     line-height: 1.714;
     flex: 1 1 auto;
+    @media (min-width: 1750px) {
+      font-size: 16px;
+    }
   }
   &__button{
     margin-top: 20px;
