@@ -1,4 +1,3 @@
-
 // options = [
 //      {
 //        el: <el>
@@ -28,11 +27,15 @@ function init(options){
     window.addEventListener("resize", OnResize);
     document.addEventListener("DOMContentLoaded", handleScrolling);
 
+    // hide elems, instead of cases when elem is on top or it's animation disabled
     function prepare(){
         for (let item of options){
-            let observable = item.observable || item.el;
-            if (observable.getBoundingClientRect().bottom <= 0) {
-                item.animated = true;
+            let {el, observable, animation} = getCurrentProps(item);
+
+            if (!animation) continue;
+
+            if (isOnTop(observable || el)) {
+                item.disabled = true;
                 continue;
             }
 
@@ -49,14 +52,19 @@ function init(options){
 
     function handleScrolling() {
         for (let item of options){
-            if (item.animated) continue;
+            if (item.disabled) continue;
 
             let {el, animation, limit = 0, duration = 1, observable} = getCurrentProps(item);
+
+            if (!animation) {
+                if (isHidden(el)) show(el);
+                continue;
+            }
 
             if (isPartialVisible(observable || el, limit)){
                 attachAnimation(el, animation, duration);
                 show(el);
-                item.animated = true;
+                item.disabled = true;
             }
         }
 
@@ -79,16 +87,25 @@ function init(options){
 
     function getCurrentProps(item){
         let breakpoints = item.breakpoints;
-        if (!breakpoints) return item;
+        let itemCopy = {...item};
+        if (!breakpoints) return itemCopy;
 
         for (let breakpoint in breakpoints){
             if (clientWidth <= breakpoint){
-                Object.assign(item, breakpoints[breakpoint]);
+                Object.assign(itemCopy, breakpoints[breakpoint]);
                 break;
             }
         }
 
-        return item;
+        return itemCopy;
+    }
+
+    function isHidden(el){
+        return el.classList.contains("_hide")
+    }
+
+    function isOnTop(el){
+        return el.getBoundingClientRect().bottom <= 0;
     }
 
     function OnResize(){
@@ -123,7 +140,7 @@ let options = [
             },
             680: {
                 animation: "scaleIncrease",
-                duration: 0.5
+                duration: 1.5
             }
         }
     },
@@ -162,7 +179,7 @@ let options = [
                 animation: ["leftToRight", "fadeIn"],
             },
             540: {
-                animation: ["scaleIncrease", "fadeIn"],
+                animation: null
             }
         }
     },
@@ -176,11 +193,11 @@ let options = [
                 animation: ["rightToLeft", "fadeIn"],
             },
             540: {
-                animation: ["scaleIncrease", "fadeIn"],
-                observable: document.querySelector(".expertise__row")
+                animation: null
             }
         }
     },
+        ...getAllMatches(".expertise__col"),
     {
         el: document.querySelector(".team__section-head"),
         animation: ["scaleIncrease","fadeIn"],
@@ -253,10 +270,19 @@ let options = [
     }
 ];
 
+function getAllMatches(selector){
+    const elemsList = Array.from(document.querySelectorAll(selector));
+    return elemsList.map(elem => {
+        return {
+            el: elem,
+            breakpoints: {
+                540: {
+                    animation: ["scaleIncrease", "fadeIn"],
+                    duration: 0.5
+                }
+            }
+        }
+    })
+}
 
 init(options);
-
-
-
-
-
