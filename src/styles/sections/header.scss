@@ -98,12 +98,12 @@
       &:after{
         transition: none;
       }
-    }
-    @media (max-height: 450px) {
+      @media (max-height: 450px) {
         font-size: 20px;
-    }
-    @media (max-height: 351px) {
-      margin-bottom: 15px;
+      }
+      @media (max-height: 351px) {
+        margin-bottom: 15px;
+      }
     }
     &:last-child{
       margin-right: 0;

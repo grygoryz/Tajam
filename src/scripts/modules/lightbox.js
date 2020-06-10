@@ -12,7 +12,6 @@ class Lightbox{
 
     _init(){
         const items = this.container.querySelectorAll(this.selector);
-
         this._numberItems(items);
 
         const sources = this._getSources(items);
