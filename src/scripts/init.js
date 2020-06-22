@@ -8,7 +8,7 @@ import "./modules/swiper-slider"
 import "./modules/video"
 
 // ------------- LIGHTBOX -------------------------
-import "./modules/lightbox"
+import "./modules/lightbox/lightbox"
 
 // ------------- LAZYLOAD -------------------------
 import "./modules/lazyload"
@@ -17,10 +17,9 @@ import "./modules/lazyload"
 import "./modules/forms"
 
 // ------------- ONSCROLL ANIMATION -------------------------
-import "./modules/onscrollAnimation"
+import "./modules/onscroll-animation/onscroll-animation"
 
-// рассортировать по папкам стили и посмотреть как принято называть файлы
-// улучшить анимацию появления при скролле для мобил
+// рефактор (разделение на файлы onscroll-animation)
 
 // МБ:
 // - разобраться с z-index

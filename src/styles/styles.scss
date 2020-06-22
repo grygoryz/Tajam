@@ -2,9 +2,11 @@
 @import "vars";
 @import "base";
 
-@import "lightbox";
-
-@import "onscrollAnimation";
+// ******************************** MODULES **************************************************************************
+// --------- lightbox -------
+@import "src/scripts/modules/lightbox/lightbox";
+// --------- onscroll-animation -------
+@import "src/scripts/modules/onscroll-animation/onscroll-animation";
 
 // ******************************** SECTIONS *************************************************************************
 //================================= HEADER =============================================================================

@@ -197,7 +197,14 @@ let options = [
             }
         }
     },
-        ...getAllMatches(".expertise__col"),
+        ...setToAllMatches(".expertise__col", {
+            breakpoints: {
+                540: {
+                    animation: ["scaleIncrease", "fadeIn"],
+                    duration: 0.5
+                }
+            }
+        }),
     {
         el: document.querySelector(".team__section-head"),
         animation: ["scaleIncrease","fadeIn"],
@@ -225,7 +232,7 @@ let options = [
         el: document.querySelector(".gallery__button-wrapper"),
         animation: ["bottomToTop", "fadeIn"],
         limit: 20,
-        duration: 0.7
+        duration: 0.3
     },
     {
         el: document.querySelector(".quotes__slider"),
@@ -243,10 +250,38 @@ let options = [
                 animation: ["leftToRight", "fadeIn"],
             },
             715: {
-                animation: "scaleIncrease",
-                duration: 0.7
+                animation: null,
             }
         }
+    },
+    {
+        el: document.querySelector(".contact__title"),
+        breakpoints: {
+            715: {
+                animation: ["scaleIncrease","fadeIn"],
+                limit: 35,
+                duration: 0.5
+            }
+        }
+    },
+    {
+      el: document.querySelector(".form-contact"),
+      breakpoints: {
+          715: {
+              animation: "fadeIn",
+              duration: 1.3
+          }
+      }
+    },
+    {
+       el: document.querySelector(".form-contact__button"),
+       breakpoints: {
+           715: {
+               animation: ["fadeIn", "bottomToTop"],
+               duration: 0.6,
+               limit: 30
+           }
+       }
     },
     {
         el: document.querySelector(".contact__clients"),
@@ -258,9 +293,26 @@ let options = [
                 animation: ["rightToLeft", "fadeIn"],
             },
             715: {
-                animation: "scaleIncrease",
-                duration: 0.7,
-                observable: null
+                animation: null,
+            }
+        }
+    },
+    {
+        el: document.querySelector(".clients-contact__title"),
+        breakpoints: {
+            715: {
+                animation: ["scaleIncrease","fadeIn"],
+                limit: 35,
+                duration: 0.5
+            }
+        }
+    },
+    {
+        el: document.querySelector(".clients-contact__list"),
+        breakpoints: {
+            715: {
+                animation: "fadeIn",
+                duration: 1.3
             }
         }
     },
@@ -270,19 +322,16 @@ let options = [
     }
 ];
 
-function getAllMatches(selector){
+function setToAllMatches(selector, options){
     const elemsList = Array.from(document.querySelectorAll(selector));
     return elemsList.map(elem => {
         return {
             el: elem,
-            breakpoints: {
-                540: {
-                    animation: ["scaleIncrease", "fadeIn"],
-                    duration: 0.5
-                }
-            }
+            ...options
         }
     })
 }
+
+
 
 init(options);
