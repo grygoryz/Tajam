@@ -1,89 +1,107 @@
-
 //-----REM-----
-html{
+html {
   font-size: 14px;
   @include robotoRegular;
 }
+
 //-----RESET, BASE SETTINGS-----
 * {
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
 }
+
 p {
   margin: 0;
 }
-h1, h2, h3{
+
+h1, h2, h3 {
   margin: 0;
 }
-textarea{
+
+textarea {
   padding: 0;
 }
-input, textarea{
+
+input, textarea {
   border: none;
   background: transparent;
   outline: none;
 }
-button{
+
+button {
   border: none;
   text-decoration: none;
   background: transparent;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-body{
+
+body {
   overflow-x: hidden;
 }
-html{
+
+html {
   scroll-behavior: smooth;
 }
+
 // =================================== UTIL CLASSES ====================================================================
-._hidden-overflow{
+._hidden-overflow {
   overflow: hidden;
 }
+
 // =====================================BLOCKS ========================================================================
 // ------------- container -------------------------------------------------------------------------
-.container{
+.container {
   margin: 0 auto;
   max-width: 980px;
   padding: 70px 20px;
-  &_will-expand{
+
+  &_will-expand {
     @media (min-width: 1750px) {
       max-width: 1240px;
     }
   }
 }
+
 // ---------------------------------- logo ---------------------------------------------------------
-.logo{
+.logo {
   display: flex;
   align-items: center;
   z-index: 1;
-  & img{
+
+  & img {
     margin-right: 12px;
   }
-  & span{
+
+  & span {
     @include robotoThin;
     font-size: 30px;
     color: #22bac6;
     text-align: center;
   }
 }
+
 // -------------------------------------------bg-overlay-------------------------------------------------------------
-.bg-overlay{
-    z-index: 0;
-    position: absolute;
-    width: 100%;
-    height:100%;
-    top: 0; left: 0;
-    background-image: linear-gradient( 0deg, rgb(9,5,47) 0%, rgb(49,29,94) 100%);
-    opacity: 0.851;
+.bg-overlay {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(0deg, rgb(9, 5, 47) 0%, rgb(49, 29, 94) 100%);
+  opacity: 0.851;
 }
+
 //------------------------------------------ button --------------------------------------------------------
-.button{
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,9 +117,11 @@ html{
   overflow: hidden;
   z-index: 1;
   text-transform: uppercase;
-  &_big{
+
+  &_big {
     width: 140px;
   }
+
   &::after {
     content: "";
     display: block;
@@ -117,28 +137,34 @@ html{
     opacity: 0;
     visibility: hidden;
   }
+
   &:hover {
     color: rgb(9, 5, 47);
   }
-  &_light{
-    &:hover{
+
+  &_light {
+    &:hover {
       color: rgba(17, 10, 85, 0.85);
     }
   }
+
   &:hover::after {
     visibility: visible;
     left: -50%;
     opacity: 1;
   }
-  &:active{
+
+  &:active {
     border: 1px solid rgb(0, 160, 148);
   }
-  &:active::after{
+
+  &:active::after {
     background-color: rgb(0, 160, 148);
   }
 }
+
 // ------------------------------------ title ------------------------------------------------------------------------
-.title{
+.title {
   @include playfairBold;
   font-size: 22px;
   color: rgb(65, 61, 75);
@@ -147,8 +173,9 @@ html{
     font-size: 24px;
   }
 }
+
 // ----------------------------------------- description-text ---------------------------------------------------------
-.description-text{
+.description-text {
   @include robotoLight;
   font-size: 14px;
   color: rgba(65, 61, 75, 0.749);
@@ -157,16 +184,18 @@ html{
     font-size: 16px;
   }
 }
+
 // -------------------------------------------section-head-------------------------------------------------------------
-.section-head{
-  &__title{
+.section-head {
+  &__title {
     text-align: center;
     margin-bottom: 14px;
     text-transform: uppercase;
     position: relative;
     z-index: 1;
   }
-  &__subtitle{
+
+  &__subtitle {
     @include playfairRegular;
     text-align: center;
     font-size: 14px;
@@ -177,24 +206,29 @@ html{
     @media (min-width: 1750px) {
       font-size: 16px;
     }
-    &:after{
+
+    &:after {
       content: "";
       display: block;
       width: 50px;
       height: 2px;
       background-color: #c6c4c9;
       position: absolute;
-      bottom: 0; left: 50%;
+      bottom: 0;
+      left: 50%;
       transform: translateX(-50%);
     }
   }
-  &_white{
-    .section-head__title{
+
+  &_white {
+    .section-head__title {
       color: rgb(255, 255, 255);
     }
-    .section-head__subtitle{
+
+    .section-head__subtitle {
       color: rgb(255, 255, 255);
-      &:after{
+
+      &:after {
         background-color: rgb(255, 255, 255);
         opacity: 0.2;
       }

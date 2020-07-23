@@ -1,20 +1,24 @@
-.contact{
-  &__container{
+.contact {
+  &__container {
     display: flex;
     justify-content: space-between;
+
     @media (max-width: 992px) {
       padding-top: 45px;
       padding-bottom: 45px;
     }
+
     @media (max-width: 715px) {
       flex-flow: column;
       align-items: center;
       padding-bottom: 15px;
     }
   }
-  &__form-wrapper{
+
+  &__form-wrapper {
     flex: 0 1 460px;
     margin-right: 30px;
+
     @media (max-width: 715px) {
       width: 100%;
       text-align: center;
@@ -22,23 +26,21 @@
       margin-bottom: 50px;
     }
   }
-  &__title{
+
+  &__title {
     margin-bottom: 33px;
   }
-  &__form{
-  }
-  &__clients{
-
-  }
 }
+
 // ------------------------------ form-contact ------------------------------------------------------------------------
-.form-contact{
+.form-contact {
   display: flex;
   flex-flow: column;
   @media (max-width: 715px) {
     align-items: center;
   }
-  input:not([type="submit"]), textarea{
+
+  input:not([type="submit"]), textarea {
     max-width: 460px;
     border: 1px solid #e5e5e5;
     padding-left: 20px;
@@ -46,7 +48,8 @@
     @include robotoRegular;
     font-size: 16px;
     transition: border-color .3s;
-    &::placeholder{
+
+    &::placeholder {
       @include robotoLight;
       font-size: 14px;
       color: rgba(65, 61, 75, 0.502);
@@ -54,54 +57,53 @@
         font-size: 16px;
       }
     }
-    &:focus{
+
+    &:focus {
       border-color: #bebebe;
     }
+
     @media (max-width: 715px) {
       width: 100%;
     }
   }
-  input:not([type="submit"]){
+
+  input:not([type="submit"]) {
     height: 45px;
     margin-bottom: 23px;
   }
+
   textarea {
     padding-top: 21px;
     height: 200px;
     resize: none;
     margin-bottom: 21px;
   }
-  &__name{
-  }
-  &__email{
-  }
-  &__subject{
-  }
-  &__message{
-  }
-  &__button{
-  }
 }
+
 // -------------------------------------- clients-contact -------------------------------------------------------------
-.clients-contact{
-  &__title{
+.clients-contact {
+  &__title {
     margin-bottom: 37px;
     @media (max-width: 715px) {
       text-align: center;
       margin-bottom: 43px;
     }
   }
-  &__list{
+
+  &__list {
     display: flex;
     @media (max-width: 400px) {
       flex-flow: column;
     }
   }
-  &__col{
+
+  &__col {
     margin-right: 80px;
-    &:last-child{
+
+    &:last-child {
       margin: 0;
     }
+
     @media (max-width: 830px) {
       margin-right: 20px;
     }
@@ -112,12 +114,14 @@
       margin: 0;
     }
   }
-  &__item{
+
+  &__item {
     margin-bottom: 47px;
     display: flex;
     justify-content: center;
     align-items: center;
-    & img{
+
+    & img {
       max-width: 100%;
     }
   }

@@ -1,4 +1,4 @@
-.team{
+.team {
   position: relative;
   background-position: center;
   background-size: cover;
@@ -9,17 +9,20 @@
   @media (max-width: 500px) {
     background-image: url("../images/bg/team-bg-500.jpg");
   }
-  &__container{
+
+  &__container {
     padding-bottom: 60px;
     @media (max-width: 990px) {
       padding-bottom: 35px;
       padding-top: 35px;
     }
   }
-  &__section-head{
+
+  &__section-head {
     margin-bottom: 47px;
   }
-  &__row{
+
+  &__row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 70px;
@@ -30,7 +33,8 @@
       margin-bottom: 70-25px;
     }
   }
-  &__col{
+
+  &__col {
     flex: 0 1 220px;
     @media (max-width: 990px) {
       flex: 0 1 45%;
@@ -48,16 +52,19 @@
       }
     }
   }
-  &__member{
+
+  &__member {
     z-index: 1;
   }
-  &__footer{
+
+  &__footer {
     display: flex;
     align-items: center;
     flex-flow: column;
 
   }
-  &__announcement{
+
+  &__announcement {
     @include robotoLight;
     font-size: 14px;
     color: rgb(243, 243, 243);
@@ -68,27 +75,29 @@
       font-size: 16px;
     }
   }
-  &__button{
-
-  }
 }
+
 // -------------------------------------- team-member -----------------------------------------------------------------
-.team-member{
+.team-member {
   max-width: 220px;
-  &__photo{
+
+  &__photo {
     width: 100%;
     max-height: 230px;
-    & img{
+
+    & img {
       width: 100%;
     }
   }
-  &__about{
+
+  &__about {
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-top: none;
     padding: 22px 0 24px;
     text-align: center;
   }
-  &__name{
+
+  &__name {
     @include robotoBlack;
     font-size: 14px;
     color: rgb(255, 255, 255);
@@ -97,7 +106,8 @@
       font-size: 16px;
     }
   }
-  &__position{
+
+  &__position {
     @include robotoLight;
     font-size: 13px;
     color: rgba(250, 250, 250, 0.702);

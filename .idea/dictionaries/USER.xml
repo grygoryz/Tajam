@@ -2,6 +2,7 @@
   <dictionary name="USER">
     <words>
       <w>elems</w>
+      <w>lazyload</w>
       <w>lightbox</w>
       <w>roboto</w>
       <w>swiper</w>

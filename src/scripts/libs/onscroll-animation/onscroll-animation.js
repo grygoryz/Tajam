@@ -32,7 +32,7 @@ export default function setOnScrollAnimation(options) {
     // hide elems, instead of cases when elem is on top or it's animation disabled
     function prepare() {
         for (let item of options) {
-            let {el, observable, animation} = getCurrentProps(item);
+            const {el, observable, animation} = getCurrentProps(item);
 
             if (!animation) continue;
 
@@ -56,7 +56,7 @@ export default function setOnScrollAnimation(options) {
         for (let item of options) {
             if (item.disabled) continue;
 
-            let {el, animation, limit = 0, duration = 1, observable} = getCurrentProps(item);
+            const {el, animation, limit = 0, duration = 1, observable} = getCurrentProps(item);
 
             if (!animation) {
                 if (isHidden(el)) show(el);
@@ -83,14 +83,15 @@ export default function setOnScrollAnimation(options) {
     }
 
     function isPartialVisible(el, limit) {
-        let coords = el.getBoundingClientRect();
+        const coords = el.getBoundingClientRect();
         return ((coords.top + coords.height >= 0) && (coords.height + window.innerHeight - limit >= coords.bottom));
     }
 
     function getCurrentProps(item) {
         let breakpoints = item.breakpoints;
+        if (!breakpoints) return item;
+
         let itemCopy = {...item};
-        if (!breakpoints) return itemCopy;
 
         for (let breakpoint in breakpoints) {
             if (clientWidth <= breakpoint) {

@@ -1,27 +1,20 @@
 // ------------ BURGER ---------------------
-import "./modules/burger"
+import "./burger/burger"
 
 // ------------ SWIPER-SLIDER ---------------------
-import "./modules/swiper-slider"
+import "./swiper-slider/swiper-slider"
 
 // ------------ VIMEO-VIDEO ---------------------
-import "./modules/video"
+import "./video/video"
 
 // ------------- LIGHTBOX -------------------------
-import "./modules/lightbox/lightbox"
+import "./lightbox-config/lightbox-config"
 
 // ------------- LAZYLOAD -------------------------
-import "./modules/lazyload"
+import "./lazyload/lazyload"
 
 // ------------- FORM -------------------------
-import "./modules/forms"
+import "./forms/forms"
 
 // ------------- ONSCROLL ANIMATION -------------------------
-import "./modules/onscroll-animation/onscroll-animation"
-
-// рефактор (разделение на файлы onscroll-animation)
-
-// МБ:
-// - разобраться с z-index
-// - переписать lightbox
-// - зум в галерее, установить max scale для зума либо настроить класс wide
+import "./onscroll-animation-config/onscroll-animation-config"

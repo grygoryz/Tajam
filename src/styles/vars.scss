@@ -1,31 +1,35 @@
-
 //// FONTS
-
-@mixin robotoThin{
+@mixin robotoThin {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
 }
-@mixin robotoLight{
+
+@mixin robotoLight {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
-@mixin robotoRegular{
+
+@mixin robotoRegular {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
-@mixin robotoBlack{
+
+@mixin robotoBlack {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
 }
-@mixin playfairBlack{
+
+@mixin playfairBlack {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
 }
-@mixin playfairBold{
+
+@mixin playfairBold {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
 }
-@mixin playfairRegular{
+
+@mixin playfairRegular {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
 }
